@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import KeyboardEventHandler from "react-keyboard-event-handler";
-import { Container } from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
 import keysMapping from "../constants/keys-mapping.json";
-import { KeyboardLayout } from "../components";
+import { KeyboardLayout, InfoBox } from "../components";
 
 const PressKeyPractice: React.FunctionComponent = () => {
     // key process
@@ -51,8 +51,8 @@ const PressKeyPractice: React.FunctionComponent = () => {
                 handleKeys={keysMapping.map(({ en }) => en)}
                 handleEventType="keydown"
                 onKeyEvent={(key: string, e: KeyboardEvent) => handleKeyOnDown(key, e)} />
-            <Container fixed>
-                <p>{timeLeft}</p>
+            <Container fixed style={{ paddingTop: "25%" }}>
+                <InfoBox><Typography>在倉頡碼出現時，請按下對應的英文字符</Typography></InfoBox>
                 <KeyboardLayout currentKey={currentKey} lightSet={lightSet}></KeyboardLayout>
             </Container>
         </>

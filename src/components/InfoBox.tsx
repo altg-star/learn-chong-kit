@@ -4,7 +4,7 @@ import { Paper } from "@material-ui/core";
 
 const StyledPaper = styled(Paper)`
     text-align: center;
-    padding: 8px;
+    padding: 16px;
     margin: 16px;
 `
 

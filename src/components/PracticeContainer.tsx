@@ -6,8 +6,8 @@ import { KeyboardLayout, InfoBox, Header } from ".";
 import keysMapping from "../constants/keys-mapping.json";
 
 const PaperContainer = styled(Paper)`
-    height: 576px;
-    width: auto;
+    height: auto%;
+    width: 100%;
     padding: 16px;
 `
 
@@ -20,15 +20,24 @@ interface PracticeContainerProps {
     handleKeys?: Array<string>,
     lightSet?: Set<string>,
     handleKeyOnDown(key: string, e?: KeyboardEvent): any,
+    handleSpaceOnDown(key: string, e?: KeyboardEvent): any,
 }
 
 const PracticeContainer = (props: PracticeContainerProps): React.ReactElement => {
+    const handleSpaceOnDown = async (key: string, e: KeyboardEvent) => {
+        await props.handleSpaceOnDown(key, e);
+    }
+
     const handleKeyOnDown = async (key: string, e: KeyboardEvent) => {
         await props.handleKeyOnDown(key, e);
     }
 
     return (
         <>
+            <KeyboardEventHandler
+                handleKeys={["space"]}
+                handleEventType="keydown"
+                onKeyEvent={(key: string, e: KeyboardEvent) => handleSpaceOnDown(key, e)} />
             <KeyboardEventHandler
                 handleKeys={props.handleKeys || keysMapping.map(({ en }) => en)}
                 handleEventType="keydown"

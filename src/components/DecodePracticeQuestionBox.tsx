@@ -9,11 +9,11 @@ const StyledPaper = styled(Paper)`
     min-height: 24px;
 `
 
-interface AssociateKeyQuestionBoxProps {
+interface DecodePracticeQuestionBoxProps {
     question: string,
 }
 
-const AssociateKeyQuestionBox = (props: AssociateKeyQuestionBoxProps): React.ReactElement => {
+const DecodePracticeQuestionBox = (props: DecodePracticeQuestionBoxProps): React.ReactElement => {
     return (
         <StyledPaper>
             {
@@ -25,4 +25,4 @@ const AssociateKeyQuestionBox = (props: AssociateKeyQuestionBoxProps): React.Rea
     )
 }
 
-export default AssociateKeyQuestionBox;
+export default DecodePracticeQuestionBox;

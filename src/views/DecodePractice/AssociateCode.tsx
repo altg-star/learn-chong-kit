@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { PracticeContainer, AssociateKeyQuestionBox } from "../../components";
+import { PracticeContainer, DecodePracticeQuestionBox, KeyTips } from "../../components";
 import keysMapping from "../../constants/keys-mapping.json";
 
 //question
@@ -41,17 +41,21 @@ const AssociateCode: React.FunctionComponent = () => {
         randomQuestion()
     }, [])
     return (
-        <PracticeContainer
-            title="輔助字型練習"
-            previousPath="/decode-practice"
-            instruction="請輸入輔
+        <>
+            <KeyTips />
+            <PracticeContainer
+                title="輔助字型練習"
+                previousPath="/decode-practice"
+                instruction="請輸入輔
             助字型對應的倉頡碼"
-            currentKey={currentInput}
-            handleKeyOnDown={(key) => handleKeyOnDown(key)}
-            lightSet={fullLightSet()}
-        >
-            <AssociateKeyQuestionBox question={currentQuestion}></AssociateKeyQuestionBox>
-        </PracticeContainer >
+                currentKey={currentInput}
+                handleKeyOnDown={(key) => handleKeyOnDown(key)}
+                handleSpaceOnDown={() => { }}
+                lightSet={fullLightSet()}
+            >
+                <DecodePracticeQuestionBox question={currentQuestion}></DecodePracticeQuestionBox>
+            </PracticeContainer >
+        </>
     )
 }
 

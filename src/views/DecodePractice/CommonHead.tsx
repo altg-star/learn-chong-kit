@@ -48,6 +48,7 @@ const CommonHead: React.FunctionComponent = () => {
                 currentKey={currentInput}
                 handleKeyOnDown={(key) => handleKeyOnDown(key)}
                 handleSpaceOnDown={() => handleSpaceOnDown()}
+                handleBackSpaceOnDown={() => setCurrentInput(currentInput.slice(0, currentInput.length - 1))}
                 lightSet={fullLightSet()}
             >
                 <DecodePracticeQuestionBox question={currentQuestion.q}></DecodePracticeQuestionBox>

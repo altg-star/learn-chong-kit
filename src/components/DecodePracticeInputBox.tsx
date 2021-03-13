@@ -13,6 +13,7 @@ const StyledContainer = styled.div`
 
 const InputBox = styled.span`
     font-size: 20px;
+    text-align: left;
     border-style: ridge;
     min-width: 100px;
     min-height: 24px;

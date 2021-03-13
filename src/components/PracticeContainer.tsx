@@ -20,7 +20,8 @@ interface PracticeContainerProps {
     handleKeys?: Array<string>,
     lightSet?: Set<string>,
     handleKeyOnDown(key: string, e?: KeyboardEvent): any,
-    handleSpaceOnDown(key: string, e?: KeyboardEvent): any,
+    handleSpaceOnDown(key?: string, e?: KeyboardEvent): any,
+    handleBackSpaceOnDown?(key?: string, e?: KeyboardEvent): any,
 }
 
 const PracticeContainer = (props: PracticeContainerProps): React.ReactElement => {
@@ -28,9 +29,15 @@ const PracticeContainer = (props: PracticeContainerProps): React.ReactElement =>
         await props.handleSpaceOnDown(key, e);
     }
 
+    const handleBackSpaceOnDown = async (key: string, e: KeyboardEvent) => {
+        if (props.handleBackSpaceOnDown)
+            await props.handleBackSpaceOnDown(key, e)
+    }
+
     const handleKeyOnDown = async (key: string, e: KeyboardEvent) => {
         await props.handleKeyOnDown(key, e);
     }
+
 
     return (
         <>
@@ -38,6 +45,10 @@ const PracticeContainer = (props: PracticeContainerProps): React.ReactElement =>
                 handleKeys={["space"]}
                 handleEventType="keydown"
                 onKeyEvent={(key: string, e: KeyboardEvent) => handleSpaceOnDown(key, e)} />
+            <KeyboardEventHandler
+                handleKeys={["backspace"]}
+                handleEventType="keydown"
+                onKeyEvent={(key: string, e: KeyboardEvent) => handleBackSpaceOnDown(key, e)} />
             <KeyboardEventHandler
                 handleKeys={props.handleKeys || keysMapping.map(({ en }) => en)}
                 handleEventType="keydown"

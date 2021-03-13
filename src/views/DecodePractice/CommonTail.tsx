@@ -5,7 +5,7 @@ import keysMapping from "../../constants/keys-mapping.json";
 import CommonTailPracticeQuestion from "../../constants/question/common-tail-practice-question.json";
 
 //constant
-const MAX_INPUT = 2;
+const MAX_INPUT = 3;
 const question = CommonTailPracticeQuestion as Array<{ q: string, a: string }>
 
 const fullLightSet = (): Set<string> => {
@@ -42,12 +42,13 @@ const CommonTail: React.FunctionComponent = () => {
         <>
             <KeyTips />
             <PracticeContainer
-                title="常用字首練習"
+                title="常用字身練習"
                 previousPath="/decode-practice"
-                instruction="請輸入字首對應的倉頡碼（一至三位）"
+                instruction="請輸入字身對應的倉頡碼（一至三位）"
                 currentKey={currentInput}
                 handleKeyOnDown={(key) => handleKeyOnDown(key)}
                 handleSpaceOnDown={() => handleSpaceOnDown()}
+                handleBackSpaceOnDown={() => setCurrentInput(currentInput.slice(0, currentInput.length - 1))}
                 lightSet={fullLightSet()}
             >
                 <DecodePracticeQuestionBox question={currentQuestion.q}></DecodePracticeQuestionBox>

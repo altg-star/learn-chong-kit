@@ -11,6 +11,7 @@ const StyledPaper = styled(Paper)`
 
 interface DecodePracticeQuestionBoxProps {
     question: string,
+    tips?: string,
 }
 
 const DecodePracticeQuestionBox = (props: DecodePracticeQuestionBoxProps): React.ReactElement => {
@@ -21,6 +22,7 @@ const DecodePracticeQuestionBox = (props: DecodePracticeQuestionBoxProps): React
                     : <img src={`/assets/characters/${props.question}`} alt="找不到題目"></img>)
                     : (<Typography variant="h5">找不到題目</Typography>)
             }
+            {props.tips ? <Typography variant="subtitle2" >{props.tips}</Typography> : null}
         </StyledPaper>
     )
 }

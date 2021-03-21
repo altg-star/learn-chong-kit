@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Home, Tutorial, KeyPractice, DecodePracticeIndex } from "./views";
 import { BasicKeyPractice, RootKeyPractice } from "./views/KeyPractice";
-import { AssociateCode, CommonHead, CommonTail } from "./views/DecodePractice";
+import { AssociateCode, CommonHead, CommonTail, SingleCharacter } from "./views/DecodePractice";
 
 const App = (): React.ReactElement => {
 	return (
@@ -34,6 +34,9 @@ const App = (): React.ReactElement => {
 				</Route>
 				<Route exact path="/decode-practice/common-tail">
 					<CommonTail />
+				</Route>
+				<Route exact path="/decode-practice/single-character">
+					<SingleCharacter />
 				</Route>
 			</Switch >
 		</BrowserRouter>

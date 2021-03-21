@@ -48,7 +48,7 @@ const CommonHead: React.FunctionComponent = () => {
             <PracticeContainer
                 title="常用字首練習"
                 previousPath="/decode-practice"
-                instruction="請輸入單車對應的倉頡碼）"
+                instruction="請輸入單字對應的倉頡碼"
                 currentKey={currentInput}
                 handleKeyOnDown={(key) => handleKeyOnDown(key)}
                 handleSpaceOnDown={() => handleSpaceOnDown()}

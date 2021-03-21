@@ -37,8 +37,8 @@ const CommonHead: React.FunctionComponent = () => {
         const n = Math.floor(Math.random() * question.length)
         setCurrentQuestion(question[n]);
         setCurrentTips(`取碼數目：${question[n].a.length}　結構：${st[`${question[n].s}`]}`)
-
     }
+
     useEffect(() => {
         randomQuestion()
     }, [])

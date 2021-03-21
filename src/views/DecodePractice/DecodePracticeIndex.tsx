@@ -5,6 +5,7 @@ const linkList = [
     { "title": "常用字首", "href": "/decode-practice/common-head" },
     { "title": "常用字身", "href": "/decode-practice/common-tail" },
     { "title": "單字拆碼", "href": "/decode-practice/single-character" },
+    { "title": "詞組拆碼", "href": "/decode-practice/word" },
     { "title": "回首頁", "href": "/" },
 ]
 

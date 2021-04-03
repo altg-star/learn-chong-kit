@@ -82,6 +82,11 @@ const CommonInputBox = (props: CommonInputBoxProps): React.ReactElement => {
     }
 
     const handleKeyOnDown = async (key: string, e: KeyboardEvent) => {
+        if (selection.length > 0) {
+            const character = String.fromCharCode(parseInt(selection[0]));
+            await props.setCharacter(character);
+            setSelection([]);
+        }
         if (input.length === 0) {
             setInput(input.concat(key));
             if (cp[`${key}`] !== undefined) {

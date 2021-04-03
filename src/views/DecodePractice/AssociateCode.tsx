@@ -46,8 +46,7 @@ const AssociateCode: React.FunctionComponent = () => {
             <PracticeContainer
                 title="輔助字型練習"
                 previousPath="/decode-practice"
-                instruction="請輸入輔
-            助字型對應的倉頡碼"
+                instruction="請輸入輔助字型對應的倉頡碼"
                 currentKey={currentInput}
                 handleKeyOnDown={(key) => handleKeyOnDown(key)}
                 handleSpaceOnDown={() => { }}

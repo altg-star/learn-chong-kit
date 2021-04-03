@@ -20,9 +20,6 @@ interface PracticeContainerProps {
 }
 
 const PracticeContainer = (props: PracticeContainerProps): React.ReactElement => {
-
-
-
     return (
         <>
 

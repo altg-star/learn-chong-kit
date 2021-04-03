@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect } from "react";
-import * as R from "ramda";
 import { ArticleContainer } from "../../components";
 import { Typography } from "@material-ui/core";
 import styled from "styled-components";

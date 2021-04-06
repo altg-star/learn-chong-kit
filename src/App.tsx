@@ -20,7 +20,7 @@ const App = (): React.ReactElement => {
 				<Route exact path="/key-practice/basic">
 					<BasicKeyPractice />
 				</Route>
-				<Route path="/key-practice/root/:questionId">
+				<Route path="/key-practice/root/:question">
 					<RootKeyPractice />
 				</Route>
 				<Route exact path="/decode-practice">

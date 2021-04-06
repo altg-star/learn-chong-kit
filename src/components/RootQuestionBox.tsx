@@ -10,6 +10,16 @@ const StyledPaper = styled(Paper)`
     min-height: 152px;
 `
 
+const StyledAnswer = styled(Typography)`
+    text-align: left;
+    width: 120px;
+`
+
+const FlexBox = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
 interface RootQuestionBoxProps {
     question: string,
     currentInput: string,
@@ -34,9 +44,9 @@ const RootQuestionBox = (props: RootQuestionBoxProps): React.ReactElement => {
 
     return (
         <StyledPaper>
-            <Typography variant="h5">{keyTranslation(props.question)}</Typography>
+            <FlexBox><Typography variant="h5">{keyTranslation(props.question)}</Typography></FlexBox>
             {
-                props.question ? input.map((str, i) => (<Typography key={i} variant="h5">{keyTranslation(str)}</Typography>)) : (<Typography variant="h5">找不到題目</Typography>)
+                props.question ? input.map((str, i) => (<FlexBox><StyledAnswer key={i} variant="h5">{keyTranslation(str)}</StyledAnswer></FlexBox>)) : (<StyledAnswer variant="h5">找不到題目</StyledAnswer>)
             }
         </StyledPaper>
     )

@@ -12,7 +12,7 @@ const StyledPaper = styled(Paper)`
 
 const StyledAnswer = styled(Typography)`
     text-align: left;
-    width: 120px;
+    width: ${(props: { length: number }) => props.length * 24}px;
 `
 
 const FlexBox = styled.div`
@@ -28,7 +28,6 @@ interface RootQuestionBoxProps {
 
 const RootQuestionBox = (props: RootQuestionBoxProps): React.ReactElement => {
     const [input, setInput] = useState<Array<string>>([]);
-
     useEffect(() => {
         if (props.line === 3) {
             setInput([]);
@@ -46,7 +45,7 @@ const RootQuestionBox = (props: RootQuestionBoxProps): React.ReactElement => {
         <StyledPaper>
             <FlexBox><Typography variant="h5">{keyTranslation(props.question)}</Typography></FlexBox>
             {
-                props.question ? input.map((str, i) => (<FlexBox><StyledAnswer key={i} variant="h5">{keyTranslation(str)}</StyledAnswer></FlexBox>)) : (<StyledAnswer variant="h5">找不到題目</StyledAnswer>)
+                props.question ? input.map((str, i) => (<FlexBox><StyledAnswer length={props.question.length} key={i} variant="h5">{keyTranslation(str)}</StyledAnswer></FlexBox>)) : (<StyledAnswer length={5} variant="h5">找不到題目</StyledAnswer>)
             }
         </StyledPaper>
     )

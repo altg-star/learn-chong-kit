@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useMemo } from "react";
 import { ArticleContainer } from "../../components";
 import { Typography } from "@material-ui/core";
 import styled from "styled-components";
@@ -33,17 +33,42 @@ function useForceUpdate() {
 
 const ArticlePracticeIndex: React.FunctionComponent = () => {
     const articleArray = wine.split("\n");
+    const totalPage = Math.ceil(articleArray.length / 5);
     const [character, setCharacter] = useState<string>("");
     const [inputArray, setInputArray] = useState<Array<string>>(articleArray.map(() => ""));
     const [currentLine, setCurrentLine] = useState<number>(0);
+    const [currentPage, setCurrentPage] = useState<number>(0);
     const forceUpdate = useForceUpdate();
+
+    const content = useMemo(
+        (): React.ReactNode => {
+            const data = [];
+            for (let i = 0; i < 5; i++) {
+                data.push(
+                    <React.Fragment key={i + currentPage * 5}>
+                        <Line>{articleArray[i + currentPage * 5]}</Line>
+                        <Line>{inputArray[i + currentPage * 5]}</Line>
+                    </React.Fragment>
+                )
+            }
+            return data;
+        },
+        [articleArray, inputArray, currentPage]
+    )
 
     const handleNextLine = (nextCharacter: string) => {
         inputArray[currentLine] = inputArray[currentLine].concat(nextCharacter)
         setInputArray(inputArray)
-        if (inputArray[currentLine].length === articleArray[currentLine].length)
+        if (inputArray[currentLine].length === articleArray[currentLine].length) {
             setCurrentLine(currentLine + 1);
+            console.log(currentLine)
+            if (currentLine + 1 === (currentPage + 1) * 5) {
+                setCurrentPage(currentPage + 1)
+                forceUpdate();
+            }
+        }
     }
+
 
     const handleBackSpaceOnDown = () => {
         if (inputArray[currentLine].length > 0) {
@@ -74,14 +99,7 @@ const ArticlePracticeIndex: React.FunctionComponent = () => {
             handleBackSpaceOnDown={() => handleBackSpaceOnDown()}
         >
             <div style={{ paddingLeft: "16px" }}>
-                {
-                    articleArray.map((item, i) =>
-                        <React.Fragment key={i}>
-                            <Line>{item}</Line>
-                            <Line>{inputArray[i]}</Line>
-                        </React.Fragment>
-                    )
-                }
+                {content}
             </div>
         </ArticleContainer>
     )

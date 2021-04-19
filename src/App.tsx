@@ -6,7 +6,7 @@ import { AssociateCode, CommonHead, CommonTail, SingleCharacter, Word } from "./
 
 const App = (): React.ReactElement => {
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<Switch>
 				<Route exact path="/">
 					<Home />

@@ -1,12 +1,12 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route } from "react-router-dom";
 import { Home, Tutorial, KeyPractice, DecodePracticeIndex, ArticlePracticeIndex } from "./views";
 import { BasicKeyPractice, RootKeyPractice } from "./views/KeyPractice";
 import { AssociateCode, CommonHead, CommonTail, SingleCharacter, Word } from "./views/DecodePractice";
 
 const App = (): React.ReactElement => {
 	return (
-		<BrowserRouter basename={process.env.PUBLIC_URL}>
+		<HashRouter basename={process.env.PUBLIC_URL}>
 			<Switch>
 				<Route exact path="/">
 					<Home />
@@ -45,7 +45,7 @@ const App = (): React.ReactElement => {
 					<ArticlePracticeIndex />
 				</Route>
 			</Switch >
-		</BrowserRouter>
+		</HashRouter>
 	);
 }
 

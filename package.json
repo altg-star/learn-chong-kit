@@ -1,5 +1,6 @@
 {
   "name": "learn-chong-kit",
+  "homepage": "https://altg-star.github.io/learn-chong-kit",
   "version": "0.1.1",
   "private": true,
   "dependencies": {
@@ -22,7 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -53,7 +56,8 @@
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
     "eslint": "^7.20.0",
-    "eslint-plugin-react": "^7.22.0"
+    "eslint-plugin-react": "^7.22.0",
+    "gh-pages": "^3.1.0"
   },
   "resolutions": {
     "styled-components": "^5"

@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/learn-chong-kit/static/css/main.d725c3ff.chunk.css",
-    "main.js": "/learn-chong-kit/static/js/main.832f15fe.chunk.js",
-    "main.js.map": "/learn-chong-kit/static/js/main.832f15fe.chunk.js.map",
+    "main.js": "/learn-chong-kit/static/js/main.59309031.chunk.js",
+    "main.js.map": "/learn-chong-kit/static/js/main.59309031.chunk.js.map",
     "runtime-main.js": "/learn-chong-kit/static/js/runtime-main.47ced69d.js",
     "runtime-main.js.map": "/learn-chong-kit/static/js/runtime-main.47ced69d.js.map",
     "static/js/2.a12966da.chunk.js": "/learn-chong-kit/static/js/2.a12966da.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.47ced69d.js",
     "static/js/2.a12966da.chunk.js",
     "static/css/main.d725c3ff.chunk.css",
-    "static/js/main.832f15fe.chunk.js"
+    "static/js/main.59309031.chunk.js"
   ]
 }

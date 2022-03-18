@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import KeyboardEventHandler from "react-keyboard-event-handler";
-import { Container } from "@material-ui/core";
+import { Container } from "@mui/material";
 import keysMapping from "../constants/keys-mapping.json";
 import { KeyboardLayout } from "../components";
 

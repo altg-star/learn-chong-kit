@@ -1,7 +1,7 @@
 import React from "react";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { Container, List, ListItem, Typography } from "@material-ui/core";
-import { ListItemProps } from "@material-ui/core";
+import { makeStyles, createStyles } from "@mui/styles";
+import { Container, List, ListItem, Typography } from "@mui/material";
+import { ListItemProps } from "@mui/material";
 const useStyles = makeStyles(() =>
     createStyles({
         container: {

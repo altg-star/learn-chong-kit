@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useEffect, useMemo } from "react";
 import { ArticleContainer } from "../../components";
-import { Typography } from "@material-ui/core";
-import styled from "styled-components";
+import { Typography } from "@mui/material";
 
 const wine = `君不見黃河之水天上來，奔流到海不復回。
 君不見高堂明鏡悲白髮，朝如青絲暮成雪。
@@ -16,11 +15,6 @@ const wine = `君不見黃河之水天上來，奔流到海不復回。
 主人何為言少錢，徑須沽取對君酌。
 五花馬，千金裘，
 呼兒將出換美酒，與爾同銷萬古愁。`
-
-const Line = styled(Typography)`
-    font-size: 24px;
-    min-height: 36px;
-`
 
 function useForceUpdate() {
     const [, setTick] = useState(0);
@@ -46,8 +40,8 @@ const ArticlePracticeIndex: React.FunctionComponent = () => {
             for (let i = 0; i < 5; i++) {
                 data.push(
                     <React.Fragment key={i + currentPage * 5}>
-                        <Line>{articleArray[i + currentPage * 5]}</Line>
-                        <Line>{inputArray[i + currentPage * 5]}</Line>
+                        <Typography>{articleArray[i + currentPage * 5]}</Typography>
+                        <Typography>{inputArray[i + currentPage * 5]}</Typography>
                     </React.Fragment>
                 )
             }
@@ -87,7 +81,6 @@ const ArticlePracticeIndex: React.FunctionComponent = () => {
     return (
         <ArticleContainer
             title="文章練習"
-            previousPath="/"
             setCharacter={(str) => {
                 if (str === character) {
                     handleNextLine(str);

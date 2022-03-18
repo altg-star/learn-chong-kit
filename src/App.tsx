@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { Home, Tutorial, KeyPractice, DecodePracticeIndex, ArticlePracticeIndex } from "./views";
 import { BasicKeyPractice, RootKeyPractice } from "./views/KeyPractice";
 import { AssociateCode, CommonHead, CommonTail, SingleCharacter, Word } from "./views/DecodePractice";
@@ -7,46 +7,20 @@ import { AssociateCode, CommonHead, CommonTail, SingleCharacter, Word } from "./
 const App = (): React.ReactElement => {
 	return (
 		<HashRouter basename={process.env.PUBLIC_URL}>
-			<Switch>
-				<Route exact path="/">
-					<Home />
-				</Route>
-				<Route path="/tutorial">
-					<Tutorial />
-				</Route>
-				<Route exact path="/key-practice">
-					<KeyPractice />
-				</Route>
-				<Route exact path="/key-practice/basic">
-					<BasicKeyPractice />
-				</Route>
-				<Route path="/key-practice/root/:question">
-					<RootKeyPractice />
-				</Route>
-				<Route exact path="/decode-practice">
-					<DecodePracticeIndex />
-				</Route>
-				<Route exact path="/decode-practice/associate">
-					<AssociateCode />
-				</Route>
-				<Route exact path="/decode-practice/common-head">
-					<CommonHead />
-				</Route>
-				<Route exact path="/decode-practice/common-tail">
-					<CommonTail />
-				</Route>
-				<Route exact path="/decode-practice/single-character">
-					<SingleCharacter />
-				</Route>
-				<Route exact path="/decode-practice/word">
-					<Word />
-				</Route>
-				<Route exact path="/article-practice">
-					<ArticlePracticeIndex />
-				</Route>
-			</Switch >
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/tutorial" element={<Tutorial />} />
+				<Route path="/press-key-practice" element={<KeyPractice />} />
+				<Route path="/key-practice/basic" element={<BasicKeyPractice />} />
+				<Route path="/key-practice/root/:question" element={<RootKeyPractice />} />
+				<Route path="/decode-practice" element={<DecodePracticeIndex />} />
+				<Route path="/decode-practice/associate" element={<AssociateCode />} />
+				<Route path="/decode-practice/common-head" element={<CommonHead />} />
+				<Route path="/decode-practice/common-tail" element={<CommonTail />} />
+				<Route path="/decode-practice/single-character" element={<SingleCharacter />} />
+				<Route path="/decode-practice/word" element={<Word />} />
+				<Route path="/article-practice" element={<ArticlePracticeIndex />} />
+			</Routes >
 		</HashRouter>
-	);
-}
-
+	)};
 export default App;

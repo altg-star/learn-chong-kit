@@ -1,13 +1,5 @@
 import React from "react";
-import styled from "styled-components";
-import { Paper, Typography } from "@material-ui/core";
-
-const StyledPaper = styled(Paper)`
-    text-align: center;
-    padding: 16px;
-    margin: 16px;
-    min-height: 24px;
-`
+import { Paper, Typography } from "@mui/material";
 
 interface DecodePracticeAnswerBoxProps {
     answer: string,
@@ -15,11 +7,11 @@ interface DecodePracticeAnswerBoxProps {
 
 const DecodePracticeAnswerBox = (props: DecodePracticeAnswerBoxProps): React.ReactElement => {
     return (
-        <StyledPaper>
+        <Paper>
             {
                 props.answer ? <Typography variant="h5">{props.answer}</Typography> : null
             }
-        </StyledPaper>
+        </Paper>
     )
 }
 

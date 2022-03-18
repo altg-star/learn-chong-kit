@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from "react";
 import KeyboardEventHandler from "react-keyboard-event-handler";
-import { Container, Paper, Typography } from "@material-ui/core";
+import { Container } from "@mui/material";
 import keysMapping from "../../constants/keys-mapping.json";
-import { KeyboardLayout, InfoBox, Header } from "../../components";
-import styled from "styled-components";
-
-const PaperContainer = styled(Paper)`
-    height: 576px;
-    width: auto;
-    padding: 16px;
-`
+import { Header, InfoBox, KeyboardLayout } from "../../components";
 
 const PressKeyPractice: React.FunctionComponent = () => {
     // key process
@@ -51,19 +44,19 @@ const PressKeyPractice: React.FunctionComponent = () => {
     return (
         <>
             <KeyboardEventHandler
-                handleKeys={keysMapping.map(({ en }) => en)}
+                handleKeys={keysMapping.map(({ en }: { en: string }) => en)}
                 handleEventType="keyup"
                 onKeyEvent={() => handleKeyOnUp()} />
             <KeyboardEventHandler
-                handleKeys={keysMapping.map(({ en }) => en)}
+                handleKeys={keysMapping.map(({ en }: { en: string }) => en)}
                 handleEventType="keydown"
                 onKeyEvent={(key: string, e: KeyboardEvent) => handleKeyOnDown(key, e)} />
             <Container fixed style={{ padding: "36px" }}>
-                <PaperContainer elevation={2}>
-                    <Header previousPath="/key-practice">入門練習</Header>
-                    <InfoBox><Typography>在倉頡碼出現時，請按下對應的英文字符</Typography></InfoBox>
+                <div>
+                    <Header>入門練習</Header>
+                    <InfoBox>在倉頡碼出現時，請按下對應的英文字符</InfoBox>
                     <KeyboardLayout currentKey={currentKey} lightSet={lightSet}></KeyboardLayout>
-                </PaperContainer>
+                </div>
             </Container>
         </>
     )

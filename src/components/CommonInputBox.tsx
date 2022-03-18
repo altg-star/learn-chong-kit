@@ -1,47 +1,19 @@
 import React, { useState, useMemo } from "react";
-import styled from "styled-components";
 import * as R from "ramda";
 import keyTranslation from "../utils/keyTranslation";
 import KeyboardEventHandler from "react-keyboard-event-handler";
 
 import characterMapping from "../constants/character-mapping.json";
 import keysMapping from "../constants/keys-mapping.json";
+// components
+import { Container } from "@mui/material";
+
 const cp = characterMapping as any;
-
-const StyledContainer = styled.div`
-    margin: 16px;
-    text-align: center;
-    width: auto;
-`
-
-const InputBox = styled.span`
-    font-size: 20px;
-    text-align: left;
-    border-style: ridge;
-    min-width: 100px;
-    max-width: 100px;
-    min-height: 24px;
-`
-const SelectInput = styled.span`
-    font-size: 20px;
-    min-height: 24px;
-    text-align: left;
-    border-style: ridge;
-    width: 100%
-`
-
-const CenterBox = styled.div`
-    display: flex;
-    justify-content: center;
-    padding: 4px;
-`
 
 interface CommonInputBoxProps {
     setCharacter(character: string): void,
     handleBackSpaceOnDown?(): void,
 }
-
-
 
 const CommonInputBox = (props: CommonInputBoxProps): React.ReactElement => {
     const [input, setInput] = useState<string>("");
@@ -126,10 +98,10 @@ const CommonInputBox = (props: CommonInputBoxProps): React.ReactElement => {
                 handleKeys={["1", "2", "3", "4", "5", "6", "7", "8", "9"]}
                 handleEventType="keydown"
                 onKeyEvent={(key: string) => handleNumberOnDown(key)} />
-            <StyledContainer>
-                <CenterBox><SelectInput>{selectValue.map((item, i) => `${i + 1}:${item}`).join(" ")}</SelectInput></CenterBox>
-                <CenterBox><InputBox>{inputValue}</InputBox></CenterBox>
-            </StyledContainer>
+            <Container>
+                <span>{selectValue.map((item, i) => `${i + 1}:${item}`).join(" ")}</span>
+                <span>{inputValue}</span>
+            </Container>
         </>
     )
 }

@@ -1,15 +1,8 @@
 import { ReactChildren, ReactNode } from "react"
 import KeyboardEventHandler from "react-keyboard-event-handler";
-import { Container, Paper, Typography } from "@material-ui/core";
-import styled from "styled-components";
+import { Container, Paper, Typography } from "@mui/material";
 import { KeyboardLayout, InfoBox, Header } from ".";
 import keysMapping from "../constants/keys-mapping.json";
-
-const PaperContainer = styled(Paper)`
-    height: auto%;
-    width: 100%;
-    padding: 16px;
-`
 
 interface PracticeContainerProps {
     children?: ReactChildren | ReactNode,
@@ -54,12 +47,12 @@ const PracticeContainer = (props: PracticeContainerProps): React.ReactElement =>
                 handleEventType="keydown"
                 onKeyEvent={(key: string, e: KeyboardEvent) => handleKeyOnDown(key, e)} />
             <Container fixed style={{ padding: "36px" }}>
-                <PaperContainer elevation={2}>
-                    <Header previousPath={props.previousPath}>{props.title}</Header>
+                <Paper elevation={2}>
+                    <Header>{props.title}</Header>
                     <InfoBox><Typography>{props.instruction}</Typography></InfoBox>
                     {props.children}
                     <KeyboardLayout currentKey={props.currentKey} lightSet={props.lightSet || new Set<string>()}></KeyboardLayout>
-                </PaperContainer>
+                </Paper>
             </Container>
         </>
     )

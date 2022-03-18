@@ -1,15 +1,9 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import KeyboardEventHandler from "react-keyboard-event-handler";
-import { Container, Paper, Typography } from "@material-ui/core";
+import { Container, Paper, Typography } from "@mui/material";
 import { KeyboardLayout, InfoBox, Header, RootQuestionBox } from "../../components";
-import styled from "styled-components";
 
-const PaperContainer = styled(Paper)`
-    height: 576px;
-    width: auto;
-    padding: 16px;
-`
 
 const findPermutations = (str: string): Array<string> | string => {
     if (str.length < 2) {
@@ -42,14 +36,13 @@ const getRandomQuestion = (str: string): Array<string> => {
 }
 
 const PressKeyPractice: React.FunctionComponent = () => {
-    const history = useHistory();
     const { question } = useParams<{ question: string }>();
     const [currentInput, setCurrentInput] = useState<string>("");
     const [questionIterator, setQuestionIterator] = useState<number>(0);
     const lineRef = useRef<number>(0);
 
     //init
-    const randomQuestion = useMemo((): string[] => getRandomQuestion(question), [question]);
+    const randomQuestion = useMemo((): string[] => getRandomQuestion(question || ""), [question]);
     const lightSet = useMemo((): Set<string> => {
         const tempLightSet = new Set<string>();
         if (question && question.length > 0) {
@@ -83,25 +76,25 @@ const PressKeyPractice: React.FunctionComponent = () => {
 
     useEffect(() => {
         if (questionIterator === randomQuestion.length) {
-            history.push("/");
+            console.log("done")
         }
-    }, [history, questionIterator, randomQuestion])
+    }, [questionIterator, randomQuestion])
 
 
 
     return (
         <>
             <KeyboardEventHandler
-                handleKeys={Array.from(question)}
+                handleKeys={Array.from(question || "")}
                 handleEventType="keydown"
                 onKeyEvent={(key: string, e: KeyboardEvent) => handleKeyOnDown(key, e)} />
             <Container fixed style={{ padding: "36px" }}>
-                <PaperContainer elevation={2}>
-                    <Header previousPath="/key-practice">字根輸入練習</Header>
+                <Paper elevation={2}>
+                    <Header>字根輸入練習</Header>
                     <InfoBox><Typography>請重覆輸入字根三次</Typography></InfoBox>
                     <RootQuestionBox question={randomQuestion[questionIterator] || ""} currentInput={currentInput} line={lineRef.current}></RootQuestionBox>
                     <KeyboardLayout currentKey={currentInput} lightSet={lightSet}></KeyboardLayout>
-                </PaperContainer>
+                </Paper>
             </Container>
         </>
     )

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import KeyButton from "./KeyButton";
 import keysMapping from "../constants/keys-mapping.json";
 
@@ -17,8 +17,8 @@ interface KeyboardLayoutProps {
 const KeyboardLayout: React.FunctionComponent<KeyboardLayoutProps> = ({ currentKey, color, lightColor, lightSet }: KeyboardLayoutProps) => {
     return (
         <>
-            <Grid container spacing={2} justify="center">
-                <Grid item container spacing={1} justify="center">
+            <Grid container spacing={2}>
+                <Grid item container spacing={2}>
                     {
                         firstRowKeys.map((key) => {
                             return <Grid key={key} item xs={1}>
@@ -29,7 +29,7 @@ const KeyboardLayout: React.FunctionComponent<KeyboardLayoutProps> = ({ currentK
                         })
                     }
                 </Grid>
-                <Grid item container spacing={1} justify="center">
+                <Grid item container spacing={1}>
                     {
                         secondRowKeys.map((key) => {
                             return <Grid key={key} item xs={1} >
@@ -41,7 +41,7 @@ const KeyboardLayout: React.FunctionComponent<KeyboardLayoutProps> = ({ currentK
                     }
                     <Grid item style={{ paddingRight: "24px" }}></Grid>
                 </Grid>
-                <Grid item container spacing={1} justify="center">
+                <Grid item container spacing={1}>
                     {
                         thirdRowKeys.map((key) => {
                             return <Grid key={key} item xs={1}>

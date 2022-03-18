@@ -1,15 +1,8 @@
 import React from "react";
-import styled from "styled-components";
-import { Paper } from "@material-ui/core";
-
-const StyledPaper = styled(Paper)`
-    text-align: center;
-    padding: 16px;
-    margin: 16px;
-`
+import { Paper, Typography } from "@mui/material";
 
 const InfoBox = (props: { children: React.ReactChild }): React.ReactElement => {
-    return <StyledPaper>{props.children}</StyledPaper>
+    return <Paper><Typography>{props.children}</Typography></Paper>
 }
 
 export default InfoBox;

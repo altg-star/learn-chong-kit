@@ -1,3 +1,5 @@
 export { default as Home } from "./Home";
 export { default as Tutorial } from "./Tutorial"
-export { default as KeyPressPractice } from "./PressKeyPractice";
+export { KeyPractice } from "./KeyPractice";
+export { DecodePracticeIndex } from './DecodePractice';
+export { ArticlePracticeIndex } from "./ArticlePractice";

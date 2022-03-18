@@ -2,20 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-<<<<<<< HEAD
 import { StylesProvider } from "@mui/styles";
-=======
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from 'styled-components';
-const theme = createMuiTheme();
->>>>>>> eb4ec2e54a9aec5ec1bd0980af452527e5fa53cd
 //import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
+    <StylesProvider injectFirst>
       <App />
-    </ThemeProvider>
+    </StylesProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

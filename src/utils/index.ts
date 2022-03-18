@@ -1,1 +1,0 @@
-export { default as keyTranslation } from "./keyTranslation";

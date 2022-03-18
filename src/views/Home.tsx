@@ -1,5 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
 import { makeStyles, createStyles } from "@mui/styles";
 import { Container, List, ListItem, Typography } from "@mui/material";
 import { ListItemProps } from "@mui/material";
@@ -19,21 +18,25 @@ const useStyles = makeStyles(() =>
         },
     }),
 );
-=======
-import { IndexContainer } from "../components";
->>>>>>> eb4ec2e54a9aec5ec1bd0980af452527e5fa53cd
 
-const linkList = [
-    { "title": "基礎教學", "href": "/tutorial" },
-    { "title": "按鍵練習", "href": "/key-practice" },
-    { "title": "折碼練習", "href": "/decode-practice" },
-    { "title": "文章練習", "href": "/article-practice" },
-    { "title": "速度測試", "href": "/tutorial" },
-]
+function ListItemLink(props: ListItemProps<"a", { button?: true }>) {
+    return <ListItem button component="a" {...props} />;
+}
 
 const Home: React.FunctionComponent = () => {
+    const classes = useStyles();
     return (
-        <IndexContainer title="學倉頡" linkList={linkList} />
+        <Container fixed className={classes.container}>
+            <Typography variant="h2">開開心心學倉頡</Typography>
+            <List className={classes.list}>
+                <ListItemLink href="/tutorial">基礎教學</ListItemLink>
+                <ListItemLink href="/press-key-practice">按鍵練習</ListItemLink>
+                <ListItemLink href="/tutorial">折碼練習</ListItemLink>
+                <ListItemLink href="/tutorial">詞組練習</ListItemLink>
+                <ListItemLink href="/tutorial">文章練習</ListItemLink>
+                <ListItemLink href="/tutorial">速度測試</ListItemLink>
+            </List>
+        </Container>
     )
 }
 

@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Tutorial, KeyPractice, DecodePracticeIndex, ArticlePracticeIndex } from "./views";
-import { BasicKeyPractice, RootKeyPractice } from "./views/KeyPractice";
+
+//view
+import { Home, Tutorial, PressKeyMenu, DecodePracticeIndex, ArticlePracticeIndex } from "./views";
+import { BasicKeyPractice, RootKeyPractice } from "./views/press-key";
 import { AssociateCode, CommonHead, CommonTail, SingleCharacter, Word } from "./views/DecodePractice";
 
 //style
@@ -21,7 +23,7 @@ const App = (): React.ReactElement => {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/tutorial" element={<Tutorial />} />
-					<Route path="/press-key-practice" element={<KeyPractice />} />
+					<Route path="/press-key" element={<PressKeyMenu />} />
 					<Route path="/key-practice/basic" element={<BasicKeyPractice />} />
 					<Route path="/key-practice/root/:question" element={<RootKeyPractice />} />
 					<Route path="/decode-practice" element={<DecodePracticeIndex />} />

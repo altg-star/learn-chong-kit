@@ -17,7 +17,7 @@ const BaseContainer: React.FunctionComponent<BaseContainerProps> = React.memo((p
     return (
         <Container maxWidth="md" disableGutters sx={{ height: "100vh", position: "relative", display: "flex", flexDirection: "column" }}>
             <MenuBar title={props.title} subtitle={props.subtitle} backOnClick={props.backOnClick} />
-            <Container sx={{ display: "flex", height: "70vh" }}>{props.children}</Container>
+            <Container sx={{ display: "flex", height: "80vh" }}>{props.children}</Container>
             <Container disableGutters sx={{ display: "flex" }}><KeyboardLayout /></Container>
         </Container>
     )

@@ -28,7 +28,7 @@ const KeyboardLayout: React.FunctionComponent<KeyboardLayoutProps> = (props: Key
     return (
         <>
             <Grid container sx={{ padding: "4px" }}>
-                <Grid item xs={12} sx={{ display: "flex", gap: "4px" }}>
+                <Grid item xs={12} sx={{ display: "flex", jutifiyContent: "center", gap: "4px" }}>
                     {
                         firstRowKeys.map((item: string, index: number) => {
                             return (
@@ -37,7 +37,7 @@ const KeyboardLayout: React.FunctionComponent<KeyboardLayoutProps> = (props: Key
                         })
                     }
                 </Grid>
-                <Grid item xs={12} sx={{ display: "flex", gap: "4px", paddingTop: "4px" }}>
+                <Grid item xs={12} sx={{ display: "flex", jutifiyContent: "center", gap: "4px", paddingTop: "4px" }}>
                     {
                         secondRowKeys.map((item: string, index: number) => {
                             return (
@@ -46,7 +46,7 @@ const KeyboardLayout: React.FunctionComponent<KeyboardLayoutProps> = (props: Key
                         })
                     }
                 </Grid>
-                <Grid item xs={12} sx={{ display: "flex", gap: "4px", paddingTop: "4px" }}>
+                <Grid item xs={12} sx={{ display: "flex", jutifiyContent: "center", gap: "4px", paddingTop: "4px" }}>
                     {
                         thirdRowKeys.map((item: string, index: number) => {
                             return (
@@ -55,7 +55,7 @@ const KeyboardLayout: React.FunctionComponent<KeyboardLayoutProps> = (props: Key
                         })
                     }
                 </Grid>
-                <Grid item xs={12} sx={{ display: "flex", gap: "4px", paddingTop: "4px" }}>
+                <Grid item xs={12} sx={{ display: "flex", jutifiyContent: "center", gap: "4px", paddingTop: "4px" }}>
                     {
                         spaceRowKeys.map((item: string, index: number) => {
                             return (

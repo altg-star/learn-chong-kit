@@ -24,7 +24,7 @@ const App = (): React.ReactElement => {
 					<Route path="/" element={<Home />} />
 					<Route path="/tutorial" element={<Tutorial />} />
 					<Route path="/press-key" element={<PressKeyMenu />} />
-					<Route path="/key-practice/basic" element={<BasicKeyPractice />} />
+					<Route path="/press-key/basic" element={<BasicKeyPractice />} />
 					<Route path="/key-practice/root/:question" element={<RootKeyPractice />} />
 					<Route path="/decode-practice" element={<DecodePracticeIndex />} />
 					<Route path="/decode-practice/associate" element={<AssociateCode />} />

@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
-import KeyboardEventHandler from "react-keyboard-event-handler";
-import { Container } from "@mui/material";
-import keysMapping from "../../constants/keys-mapping.json";
-import { Header, InfoBox, KeyboardLayout } from "../../components";
 
-const PressKeyPractice: React.FunctionComponent = () => {
+// ui
+
+// components
+import BaseContainer from "../../components/base/BaseContainer";
+
+import KeyboardEventHandler from "react-keyboard-event-handler";
+import keysMapping from "../../constants/keys-mapping.json";
+import { KeyboardLayout } from "../../components";
+
+const BasicPressKey: React.FunctionComponent = () => {
     // key process
     const [currentKey, setCurrentKey] = useState<string>("");
     const [lightSet, setLightSet] = useState<Set<string>>(new Set<string>());
@@ -43,23 +48,21 @@ const PressKeyPractice: React.FunctionComponent = () => {
     });
     return (
         <>
+            <BaseContainer title="入門練習" subtitle="在倉頡碼出現時，請按下對應的英文字符" backOnClick="/press-key">
+                <KeyboardLayout currentKey={currentKey} lightSet={lightSet}></KeyboardLayout>
+            </BaseContainer>
             <KeyboardEventHandler
                 handleKeys={keysMapping.map(({ en }: { en: string }) => en)}
                 handleEventType="keyup"
-                onKeyEvent={() => handleKeyOnUp()} />
+                onKeyEvent={() => handleKeyOnUp()}
+            />
             <KeyboardEventHandler
                 handleKeys={keysMapping.map(({ en }: { en: string }) => en)}
                 handleEventType="keydown"
-                onKeyEvent={(key: string, e: KeyboardEvent) => handleKeyOnDown(key, e)} />
-            <Container fixed style={{ padding: "36px" }}>
-                <div>
-                    <Header>入門練習</Header>
-                    <InfoBox>在倉頡碼出現時，請按下對應的英文字符</InfoBox>
-                    <KeyboardLayout currentKey={currentKey} lightSet={lightSet}></KeyboardLayout>
-                </div>
-            </Container>
+                onKeyEvent={(key: string, e: KeyboardEvent) => handleKeyOnDown(key, e)}
+            />
         </>
     )
 }
 
-export default PressKeyPractice;
+export default BasicPressKey;

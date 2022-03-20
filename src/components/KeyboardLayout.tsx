@@ -1,5 +1,9 @@
 import React from "react";
+
+// ui
 import { Grid } from "@mui/material";
+
+// components
 import KeyButton from "./KeyButton";
 import keysMapping from "../constants/keys-mapping.json";
 

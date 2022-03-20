@@ -20,15 +20,15 @@ type MenuContainerProps = {
 
 const MenuContainer: React.FunctionComponent<MenuContainerProps> = React.memo((props: MenuContainerProps) => {
     return (
-        <Container maxWidth="md" sx={{ height: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center" }}>
-            <Box pb={4} sx={{ display: "flex", justifyContent: "center" }}>
+        <Container maxWidth="md" sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <Box pb={4} sx={{ height: "30vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <Typography variant="h2" component="h2">{props.title}</Typography>
             </Box>
             <Grid container spacing={2}>
                 {
                     props.data.map((item) => {
                         return (
-                            <MenuCard title={item.title} href={item.href} Icon={item.icon} />
+                            <MenuCard title={item.title} href={item.href} Icon={item.icon} action={item.action} />
                         )
                     })
                 }

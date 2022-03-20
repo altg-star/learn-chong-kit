@@ -27,7 +27,7 @@ const KeyButton: React.FunctionComponent<KeybuttonProps> = React.memo((props: Ke
     const theme = useTheme();
     return (
         <KeyBox theme={theme} item={props.item}>
-            <Typography sx={{ fontSize: "20px", fontWeight: "bold" }}>{props.item !== "/" && props.item !== "space" && props.item}</Typography>
+            <Typography sx={{ fontSize: theme.typography.htmlFontSize, fontWeight: theme.typography.fontWeightMedium }}>{props.item !== "/" && props.item !== "space" && props.item}</Typography>
         </KeyBox>
     )
 });

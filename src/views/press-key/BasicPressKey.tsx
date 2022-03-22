@@ -1,67 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import keysMapping from "../../constants/keys-mapping.json";
 
 // ui
 
 // components
 import BaseContainer from "../../components/base/BaseContainer";
+import BasicKeyboardLayour from "../../components/press-key/BasicKeyboardLayout";
+type BasicPressKeyContentProps = {
+    currentKey?: string;
+}
 
-import KeyboardEventHandler from "react-keyboard-event-handler";
-import keysMapping from "../../constants/keys-mapping.json";
-import { KeyboardLayout } from "../../components";
-
-const BasicPressKey: React.FunctionComponent = () => {
-    // key process
-    const [currentKey, setCurrentKey] = useState<string>("");
-    const [lightSet, setLightSet] = useState<Set<string>>(new Set<string>());
-    const [nonRandomSet, setNonRandomSet] = useState<Set<string>>(new Set<string>());
-    const handleKeyOnUp = () => {
-        setCurrentKey("");
-    }
-    const handleKeyOnDown = (key: string, e: KeyboardEvent) => {
-
-        if (lightSet.has(key)) {
-            nonRandomSet.delete(key);
-            setNonRandomSet(nonRandomSet);
-            lightSet.delete(key);
-            setLightSet(lightSet);
-        }
-        setCurrentKey(key.toLowerCase());
-    }
-
-    // timer
-    const [timeLeft, setTimeLeft] = useState(60);
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            if (nonRandomSet.size !== 26) {
-                let randomCharacter = Math.floor(Math.random() * 26);
-                while (nonRandomSet.has(keysMapping[randomCharacter].en)) {
-                    randomCharacter = Math.floor(Math.random() * 26);
+const BasicPressKeyContent: React.FunctionComponent<BasicPressKeyContentProps> = ({currentKey}: BasicPressKeyContentProps) => {
+        // key process
+        const [lightSet, setLightSet] = useState<Set<string>>(new Set<string>());
+        // characters that can be random
+        const randomSet = useMemo<Set<string>>(() => new Set<string>(keysMapping.map(({en}) => en)), []);
+        // timer
+        const [timeLeft, setTimeLeft] = useState(60);
+        useEffect(() => {
+            const timer = setTimeout(() => {
+                if(randomSet.size > 0) {
+                    const randomItems = Array.from(randomSet);
+                    const randomItem = randomItems[Math.floor(Math.random() * randomItems.length)];
+                    randomSet.delete(randomItem);
+                    lightSet.add(randomItem);
+                    setLightSet(lightSet);
                 }
-                nonRandomSet.add(keysMapping[randomCharacter].en);
-                setNonRandomSet(nonRandomSet);
-                lightSet.add(keysMapping[randomCharacter].en);
+                setTimeLeft(timeLeft - 1);
+            }, 1000);
+            return () => clearTimeout(timer);
+        });
+        // monitor change or current key input
+        useEffect(() => {
+            if(currentKey && currentKey !== "") {
+                randomSet.add(currentKey);
+                lightSet.delete(currentKey);
                 setLightSet(lightSet);
             }
-            setTimeLeft(timeLeft - 1);
-        }, 1000);
-        return () => clearTimeout(timer);
-    });
+        }, [currentKey, randomSet, lightSet]);
+
     return (
-        <>
-            <BaseContainer title="入門練習" subtitle="在倉頡碼出現時，請按下對應的英文字符" backOnClick="/press-key">
-                <KeyboardLayout currentKey={currentKey} lightSet={lightSet}></KeyboardLayout>
-            </BaseContainer>
-            <KeyboardEventHandler
-                handleKeys={keysMapping.map(({ en }: { en: string }) => en)}
-                handleEventType="keyup"
-                onKeyEvent={() => handleKeyOnUp()}
-            />
-            <KeyboardEventHandler
-                handleKeys={keysMapping.map(({ en }: { en: string }) => en)}
-                handleEventType="keydown"
-                onKeyEvent={(key: string, e: KeyboardEvent) => handleKeyOnDown(key, e)}
-            />
-        </>
+        <BasicKeyboardLayour currentKey={currentKey} lightSet={lightSet}></BasicKeyboardLayour>
+    )
+}
+
+const BasicPressKey: React.FunctionComponent = () => {
+    return (
+        <BaseContainer title="入門練習" subtitle="在倉頡碼出現時，請按下對應的英文字符" backOnClick="/press-key">
+            <BasicPressKeyContent></BasicPressKeyContent>
+        </BaseContainer>
     )
 }
 

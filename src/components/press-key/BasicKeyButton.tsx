@@ -20,16 +20,21 @@ const KeyBox = styled(ButtonBase)((props: { theme: Theme, item: string, light: n
 }));
 
 type KeybuttonProps = {
-    item: { en: string, zh: string };
+    item: string;
     light: boolean;
-    onClick: (item: string) => void;
+    appear: boolean;
 }
 
 const KeyButton: React.FunctionComponent<KeybuttonProps> = React.memo((props: KeybuttonProps) => {
     const theme = useTheme();
+    console.log(props.light);
     return (
-        <KeyBox theme={theme} item={props.item.zh} light={props.light ? 1 : 0} onMouseDown={() => props.onClick(props.item.en)} onMouseUp={() => props.onClick("")}>
-            <Typography sx={{ fontSize: theme.typography.htmlFontSize, fontWeight: theme.typography.fontWeightMedium }}>{props.item.en !== "/" && props.item.en !== "*" && props.item.en !== "space" && props.item.zh}</Typography>
+        <KeyBox theme={theme} item={props.item} light={props.light ? 1 : 0}>
+            <Typography
+                sx={{ fontSize: theme.typography.htmlFontSize, fontWeight: theme.typography.fontWeightMedium }}
+            >
+                {props.item !== "/" && props.item !== "*" && props.item !== "space" && props.appear && props.item}
+            </Typography>
         </KeyBox>
     )
 });

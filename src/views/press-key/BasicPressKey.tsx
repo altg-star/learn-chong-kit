@@ -2,14 +2,14 @@ import React, { useState, useEffect, useMemo } from "react";
 import keysMapping from "../../constants/keys-mapping.json";
 
 // ui
-
+import { Container } from "@mui/material";
 // components
 import BaseContainer from "../../components/base/BaseContainer";
 import BasicKeyboardLayour from "../../components/press-key/BasicKeyboardLayout";
+
 type BasicPressKeyContentProps = {
     currentKey?: string;
 }
-
 const BasicPressKeyContent: React.FunctionComponent<BasicPressKeyContentProps> = ({currentKey}: BasicPressKeyContentProps) => {
         // key process
         const [lightSet, setLightSet] = useState<Set<string>>(new Set<string>());
@@ -40,7 +40,9 @@ const BasicPressKeyContent: React.FunctionComponent<BasicPressKeyContentProps> =
         }, [currentKey, randomSet, lightSet]);
 
     return (
-        <BasicKeyboardLayour currentKey={currentKey} lightSet={lightSet}></BasicKeyboardLayour>
+        <Container sx={{ display: "flex", alignItems: "center" }}>
+            <BasicKeyboardLayour currentKey={currentKey} lightSet={lightSet}></BasicKeyboardLayour>
+        </Container>
     )
 }
 

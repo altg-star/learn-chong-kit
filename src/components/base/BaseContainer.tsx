@@ -15,19 +15,51 @@ type BaseContainerProps = {
     title: string;
     subtitle: string;
     backOnClick?: string | Function;
+    typing?: boolean;
 }
 
 const BaseContainer: React.FunctionComponent<BaseContainerProps> = React.memo((props: BaseContainerProps) => {
     const [currentKey, setCurrentKey] = useState<string>("");
+    const [currentKeyList, setCurrentKeyList] = useState<Array<string>>([]);
     const handleKeyOnUp = () => {
         setCurrentKey("");
     }
     const handleKeyOnDown = (key: string, e: KeyboardEvent) => {
         setCurrentKey(key.toLowerCase());
+        //typing
+        if (props.typing) {
+            if (key === "space") {
+                //enter
+            } else if (key === "backspace") {
+                //delete
+                const newKeyList = currentKeyList.slice(0, -1);
+                setCurrentKeyList(newKeyList);
+            } else {
+                if (currentKeyList.length < 5) {
+                    const newKeyList = [...currentKeyList, key];
+                    setCurrentKeyList(newKeyList);
+                }
+            }
+        }
     }
-    const handleChangeKey = useCallback((item: string) => {
-        setCurrentKey(item);
-    }, []);
+    const handleChangeKey = (key: string) => {
+        setCurrentKey(key);
+        //typing
+        if (props.typing) {
+            if (key === "space") {
+                //enter
+            } else if (key === "backspace") {
+                //delete
+                const newKeyList = currentKeyList.slice(0, -1);
+                setCurrentKeyList(newKeyList);
+            } else if (key !== "") {
+                if (currentKeyList.length < 5) {
+                    const newKeyList = [...currentKeyList, key];
+                    setCurrentKeyList(newKeyList);
+                }
+            }
+        }
+    };
     const addPropsToReactElement = (element: React.ReactNode, props: any) => {
         if (React.isValidElement(element)) {
             return React.cloneElement(element, props);
@@ -47,15 +79,15 @@ const BaseContainer: React.FunctionComponent<BaseContainerProps> = React.memo((p
             <Container maxWidth="md" disableGutters sx={{ height: "100vh", maxHeight: "-webkit-fill-available", position: "relative", display: "flex", flexDirection: "column" }}>
                 <MenuBar title={props.title} subtitle={props.subtitle} backOnClick={props.backOnClick} />
                 <Container sx={{ display: "flex", height: "80vh" }}>{addPropsToChildren(props.children, { currentKey })}</Container>
-                <Container disableGutters sx={{ display: "flex" }}><KeyboardLayout currentKey={currentKey} changeKey={handleChangeKey} /></Container>
+                <Container disableGutters sx={{ display: "flex" }}><KeyboardLayout currentKey={currentKey} changeKey={handleChangeKey} currentKeyList={currentKeyList} typing={props.typing} /></Container>
             </Container>
             <KeyboardEventHandler
-                handleKeys={constantKeys}
+                handleKeys={[...constantKeys, "space", "backspace"]}
                 handleEventType="keyup"
                 onKeyEvent={() => handleKeyOnUp()}
             />
             <KeyboardEventHandler
-                handleKeys={constantKeys}
+                handleKeys={[...constantKeys, "space", "backspace"]}
                 handleEventType="keydown"
                 onKeyEvent={(key: string, e: KeyboardEvent) => handleKeyOnDown(key, e)}
             />

@@ -13,7 +13,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'; //setti
 const linkList = [
     { "title": "基礎教學", "href": "/tutorial", "icon": MenuBookIcon },
     { "title": "按鍵練習", "href": "/press-key", "icon": KeyboardOutlinedIcon },
-    { "title": "折碼練習", "href": "/decode-practice", "icon": TranslateOutlinedIcon },
+    { "title": "折碼練習", "href": "/decode", "icon": TranslateOutlinedIcon },
     { "title": "文章練習", "href": "/article-practice", "icon": ArticleOutlinedIcon },
     { "title": "速度測試", "href": "/tutorial", "icon": SpeedOutlinedIcon },
     { "title": "設定", "href": "/setting", "icon": SettingsOutlinedIcon },

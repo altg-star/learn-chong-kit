@@ -39,15 +39,11 @@ type BasicKeyboardLayoutProps = {
 }
 const BasicKeyboardLayout: React.FunctionComponent<BasicKeyboardLayoutProps> = (props: BasicKeyboardLayoutProps) => {
     return (
-        <>
-            <Grid container sx={{ display: "flex", alignItems: "center", padding: "4px" }}>
-                <Grid container>
-                    <KeyLineGrid keys={firstRowKeys} currentKey={props.currentKey} lightSet={props.lightSet}></KeyLineGrid>
-                    <KeyLineGrid keys={secondRowKeys} currentKey={props.currentKey} lightSet={props.lightSet}></KeyLineGrid>
-                    <KeyLineGrid keys={thirdRowKeys} currentKey={props.currentKey} lightSet={props.lightSet}></KeyLineGrid>
-                </Grid>
-            </Grid>
-        </>
+        <Grid container>
+            <KeyLineGrid keys={firstRowKeys} currentKey={props.currentKey} lightSet={props.lightSet}></KeyLineGrid>
+            <KeyLineGrid keys={secondRowKeys} currentKey={props.currentKey} lightSet={props.lightSet}></KeyLineGrid>
+            <KeyLineGrid keys={thirdRowKeys} currentKey={props.currentKey} lightSet={props.lightSet}></KeyLineGrid>
+        </Grid>
     )
 }
 

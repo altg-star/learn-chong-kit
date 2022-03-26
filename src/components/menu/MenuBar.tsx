@@ -43,7 +43,7 @@ const MenuBar: React.FunctionComponent<MenuBarProps> = React.memo((props: MenuBa
 
             </Toolbar>
             {
-                props.subtitle && (<Typography variant="subtitle2" component="div" sx={{ flexGrow: 1, ml: 1 }}>
+                props.subtitle && (<Typography variant="subtitle2" component="div" sx={{ flexGrow: 1, ml: 3 }}>
                     {props.subtitle}
                 </Typography>)
             }

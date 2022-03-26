@@ -3,6 +3,9 @@ import { Typography, ButtonBase } from "@mui/material"
 import { styled, useTheme } from '@mui/material/styles';
 import { Theme } from "@mui/system";
 
+// icon
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+
 const KeyBox = styled(ButtonBase)((props: { theme: Theme, item: string, light: number }) => ({
     width: props.item === "/" ? "22px" : props.item === "space" ? "308px" : "48px",
     height: "48px",
@@ -29,7 +32,11 @@ const KeyButton: React.FunctionComponent<KeybuttonProps> = React.memo((props: Ke
     const theme = useTheme();
     return (
         <KeyBox theme={theme} item={props.item.zh} light={props.light ? 1 : 0} onMouseDown={() => props.onClick(props.item.en)} onMouseUp={() => props.onClick("")}>
-            <Typography sx={{ fontSize: theme.typography.htmlFontSize, fontWeight: theme.typography.fontWeightMedium }}>{props.item.en !== "/" && props.item.en !== "*" && props.item.en !== "space" && props.item.zh}</Typography>
+            <Typography sx={{ fontSize: theme.typography.htmlFontSize, fontWeight: theme.typography.fontWeightMedium }}>
+                {
+                    (props.item.en !== "/" && props.item.en !== "*" && props.item.en !== "space") ? props.item.en === "backspace" ? (<KeyboardBackspaceIcon sx={{ marginTop: "4px" }}></KeyboardBackspaceIcon>) : props.item.zh : ""
+                }
+            </Typography>
         </KeyBox>
     )
 });

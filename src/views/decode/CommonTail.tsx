@@ -7,10 +7,10 @@ import BaseContainer from "../../components/base/BaseContainer";
 
 //static
 import keysMapping from "../../constants/keys-mapping.json";
-import CommonHeadPracticeQuestion from "../../constants/question/common-head-practice-question.json";
+import CommonTailPracticeQuestion from "../../constants/question/common-tail-practice-question.json";
 const possibleCharactersList = "abcdefghijklmnopqrstuvwxy";
-const MAX_INPUT = 2;
-const questions = CommonHeadPracticeQuestion as Array<{ q: string, a: string }>
+const MAX_INPUT = 3;
+const questions = CommonTailPracticeQuestion as Array<{ q: string, a: string }>
 
 const keyTransalte = (keyMap: Array<string>): Array<{ en: string, zh: string }> => {
     return keyMap.map((item) => {
@@ -19,10 +19,10 @@ const keyTransalte = (keyMap: Array<string>): Array<{ en: string, zh: string }> 
     });
 }
 
-type CommonHeadContentProps = {
+type CommonTailContentProps = {
     currentKey?: string;
 }
-const CommonHeadContent: React.FunctionComponent<CommonHeadContentProps> = ({ currentKey }: CommonHeadContentProps) => {
+const CommonTailContent: React.FunctionComponent<CommonTailContentProps> = ({ currentKey }: CommonTailContentProps) => {
     const theme = useTheme();
     const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
     const currentQuestion = useRef<string>(randomQuestion.q);
@@ -50,7 +50,7 @@ const CommonHeadContent: React.FunctionComponent<CommonHeadContentProps> = ({ cu
         <Container sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <Typography variant="h4" sx={{ flex: "none", height: "50%", display: "flex", alignItems: "end"  }}>{currentQuestion.current}</Typography>
             <Typography variant="h4" sx={{
-                minWidth: theme.typography.htmlFontSize * 6 + 12,
+                minWidth: theme.typography.htmlFontSize * 8 + 12,
                 height: theme.typography.htmlFontSize * 3,
                 padding: "4px 16px 4px 16px",
                 marginTop: "16px",
@@ -61,12 +61,12 @@ const CommonHeadContent: React.FunctionComponent<CommonHeadContentProps> = ({ cu
         </Container>
     )
 }
-const CommonHead: React.FunctionComponent = () => {
+const CommonTail: React.FunctionComponent = () => {
     return (
-        <BaseContainer title="常用字首練習" subtitle="請輸入字首對應的倉頡碼（一至二位）" backOnClick="/decode">
-            <CommonHeadContent></CommonHeadContent>
+        <BaseContainer title="常用字身練習" subtitle="請輸入字身對應的倉頡碼（一至三位）" backOnClick="/decode">
+            <CommonTailContent></CommonTailContent>
         </BaseContainer>
     )
 }
 
-export default CommonHead;
+export default CommonTail;

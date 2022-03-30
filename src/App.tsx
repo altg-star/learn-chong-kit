@@ -4,8 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //view
 import { Home, Tutorial, PressKeyMenu, DecodeMenu, ArticlePracticeIndex } from "./views";
 import { BasicKeyPractice, RootPressKey } from "./views/press-key";
-import { AssociateCode, CommonHead, CommonTail, SingleCharacter } from "./views/decode";
-import { Word } from "./views/DecodePractice";
+import { AssociateCode, CommonHead, CommonTail, SingleCharacter, Word } from "./views/decode";
 
 //style
 import { ThemeProvider, createTheme } from '@mui/material/styles';

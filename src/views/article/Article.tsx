@@ -1,14 +1,15 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-//ui
+import { useTheme } from '@mui/material/styles';
 import { Container, Box, Typography } from "@mui/material";
+//hooks
+import useBreakpoint from "../../hooks/useBreakpoint";
 //components
 import BaseContainer from "../../components/base/BaseContainer";
 
 //static
 import articlesJSON from "../../constants/article/article.json";
 const articles = articlesJSON as [{ name: string, content: string }];
-const PER_PAGE = 5;
 type ArticaleContentProps = {
     currentKey?: string,
     character?: { content: string },
@@ -16,6 +17,9 @@ type ArticaleContentProps = {
 }
 
 const ArticaleContent: React.FunctionComponent<ArticaleContentProps> = ({ currentKey, character, emptyKeyList }: ArticaleContentProps) => {
+    const theme = useTheme();
+    const breakpoints = useBreakpoint();
+    const PER_PAGE = breakpoints === "xs" || breakpoints === "sm" ? 3 : 5;
     const navigate = useNavigate();
     const [inputLines, setInputLines] = useState<Array<string>>([]);
     const articleLines = useRef<Array<string>>(articles[Math.floor(Math.random() * articles.length)].content.split("\n"));
@@ -46,7 +50,7 @@ const ArticaleContent: React.FunctionComponent<ArticaleContentProps> = ({ curren
                 return lines;
             }
         });
-    }, [character]);
+    }, [character, PER_PAGE]);
 
     useEffect(() => {
         if(inputLines.length > articleLines.current.length && inputLines[inputLines.length - 2].length === articleLines.current[articleLines.current.length - 1].length) {
@@ -76,7 +80,7 @@ const ArticaleContent: React.FunctionComponent<ArticaleContentProps> = ({ curren
                 return lines;
             })
         }
-    }, [currentKey, emptyKeyList])
+    }, [currentKey, emptyKeyList, PER_PAGE])
 
     //view
     let rows = [];
@@ -96,6 +100,9 @@ const ArticaleContent: React.FunctionComponent<ArticaleContentProps> = ({ curren
                 display: "grid",
                 gap: "8px",
                 gridTemplateRows: "16% 16% 16% 16% 16%",
+                [theme.breakpoints.down('sm')]: {
+                    gridTemplateRows: "30% 30% 30%"
+                },
                 justifyContent: "center"
             }}
         >

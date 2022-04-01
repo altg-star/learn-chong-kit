@@ -21,7 +21,7 @@ const spaceRowKeys = keyTranslate(["*", "*", "space", "*", "*"]);
 type KeyLineGridProps = { keys: Array<{ en: string, zh: string }>, changeKey: (item: string) => void, handleKeyOnUp: () => void, currentKey?: string }
 const KeyLineGrid: React.FunctionComponent<KeyLineGridProps> = (props: KeyLineGridProps) => {
     return (
-        <Grid item xs={12} sx={{ display: "flex", jutifiyContent: "center", gap: "4px", padding: "2px 0 2px 0" }}>
+        <Grid item xs={12} sx={{ display: "flex", jutifiyContent: "center", gap: "5px", padding: "2px 0 2px 0" }}>
             {
                 props.keys.map((item: { en: string, zh: string }, index: number) => {
                     return (

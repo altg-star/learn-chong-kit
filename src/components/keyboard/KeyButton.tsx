@@ -7,7 +7,7 @@ import { Theme } from "@mui/system";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 const KeyBox = styled(ButtonBase)((props: { theme: Theme, item: string, light: number }) => ({
-    width: props.item === "/" ? "22px" : props.item === "space" ? "308px" : "48px",
+    width: props.item === "/" ? "18px" : props.item === "space" ? "308px" : "36px",
     height: "48px",
     [props.theme.breakpoints.up('sm')]: {
         width: props.item === "/" ? "41px" : props.item === "space" ? "536px" : "86px",

@@ -10,13 +10,13 @@ import BaseContainer from "../../components/base/BaseContainer";
 //static
 import articlesJSON from "../../constants/article/article.json";
 const articles = articlesJSON as [{ name: string, content: string }];
-type ArticaleContentProps = {
+type SpeedContentProps = {
     currentKey?: string,
     character?: { content: string },
     emptyKeyList?: boolean,
 }
 
-const ArticaleContent: React.FunctionComponent<ArticaleContentProps> = ({ currentKey, character, emptyKeyList }: ArticaleContentProps) => {
+const SpeedContent: React.FunctionComponent<SpeedContentProps> = ({ currentKey, character, emptyKeyList }: SpeedContentProps) => {
     const theme = useTheme();
     const breakpoints = useBreakpoint();
     const PER_PAGE = breakpoints === "xs" || breakpoints === "sm" ? 3 : 5;
@@ -118,12 +118,12 @@ const ArticaleContent: React.FunctionComponent<ArticaleContentProps> = ({ curren
         </Container>
     )
 }
-const Articale: React.FunctionComponent = () => {
+const Speed: React.FunctionComponent = () => {
     return (
         <BaseContainer title="文章練習" subtitle="" backOnClick="/" typing>
-            <ArticaleContent></ArticaleContent>
+            <SpeedContent></SpeedContent>
         </BaseContainer>
     )
 }
 
-export default Articale;
+export default Speed;

@@ -26,12 +26,13 @@ type KeybuttonProps = {
     item: { en: string, zh: string };
     light: boolean;
     onClick: (item: string) => void;
+    handleKeyOnUp: () => void;
 }
 
 const KeyButton: React.FunctionComponent<KeybuttonProps> = React.memo((props: KeybuttonProps) => {
     const theme = useTheme();
     return (
-        <KeyBox theme={theme} item={props.item.zh} light={props.light ? 1 : 0} onMouseDown={() => props.onClick(props.item.en)} onMouseUp={() => props.onClick("")}>
+        <KeyBox theme={theme} item={props.item.zh} light={props.light ? 1 : 0} onMouseDown={() => props.onClick(props.item.en)} onMouseUp={() => props.handleKeyOnUp()}>
             <Typography sx={{ fontSize: theme.typography.htmlFontSize, fontWeight: theme.typography.fontWeightMedium }}>
                 {
                     (props.item.en !== "/" && props.item.en !== "*" && props.item.en !== "space") ? props.item.en === "backspace" ? (<KeyboardBackspaceIcon sx={{ marginTop: "4px" }}></KeyboardBackspaceIcon>) : props.item.zh : ""

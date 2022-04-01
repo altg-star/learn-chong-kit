@@ -9,9 +9,11 @@ import WordQuestion from "../../constants/question/word-practice-question.json";
 const questions = WordQuestion as Array<string>;
 
 type WordContentProps = {
-    character?: { content: string }
+    currentKey?: string,
+    character?: { content: string },
+    emptyKeyList?: boolean,
 }
-const WordContent: React.FunctionComponent<WordContentProps> = ({ character }: WordContentProps) => {
+const WordContent: React.FunctionComponent<WordContentProps> = ({ currentKey, character, emptyKeyList }: WordContentProps) => {
     const currentQuestion = useRef<string>(questions[Math.floor(Math.random() * questions.length)]);
     const [characters, setCharacters] = useState<string>("");
     useEffect(() => {
@@ -24,6 +26,12 @@ const WordContent: React.FunctionComponent<WordContentProps> = ({ character }: W
             }
         });
     }, [character]);
+
+    useEffect(() => {
+        if(currentKey === "backspace" && emptyKeyList) {
+            setCharacters(char => char.slice(0, -1));
+        }
+    }, [currentKey, emptyKeyList])
 
     useEffect(() => {
         //check answer

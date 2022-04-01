@@ -1,1 +1,0 @@
-export { default as ArticlePracticeIndex } from "./ArticlePracticeIndex";

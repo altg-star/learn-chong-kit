@@ -2,9 +2,10 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //view
-import { Home, Tutorial, PressKeyMenu, DecodeMenu, ArticlePracticeIndex } from "./views";
+import { Home, Tutorial, PressKeyMenu, DecodeMenu } from "./views";
 import { BasicKeyPractice, RootPressKey } from "./views/press-key";
 import { AssociateCode, CommonHead, CommonTail, SingleCharacter, Word } from "./views/decode";
+import { Article } from "./views/article";
 
 //style
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -32,7 +33,7 @@ const App = (): React.ReactElement => {
 					<Route path="/decode/common-tail" element={<CommonTail />} />
 					<Route path="/decode/single-character" element={<SingleCharacter />} />
 					<Route path="/decode/word" element={<Word />} />
-					<Route path="/article-practice" element={<ArticlePracticeIndex />} />
+					<Route path="/article" element={<Article />} />
 				</Routes>
 			</BrowserRouter>
 		</ThemeProvider>

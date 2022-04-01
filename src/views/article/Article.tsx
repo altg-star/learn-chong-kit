@@ -1,0 +1,114 @@
+import React, { useRef, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+//ui
+import { Container, Box, Typography } from "@mui/material";
+//components
+import BaseContainer from "../../components/base/BaseContainer";
+
+//static
+import articlesJSON from "../../constants/article/article.json";
+const articles = articlesJSON as [{ name: string, content: string }];
+const PER_PAGE = 5;
+type ArticaleContentProps = {
+    currentKey?: string,
+    character?: { content: string },
+    emptyKeyList?: boolean,
+}
+
+const ArticaleContent: React.FunctionComponent<ArticaleContentProps> = ({ currentKey, character, emptyKeyList }: ArticaleContentProps) => {
+    const navigate = useNavigate();
+    const [inputLines, setInputLines] = useState<Array<string>>([]);
+    const articleLines = useRef<Array<string>>(articles[Math.floor(Math.random() * articles.length)].content.split("\n"));
+    const [currentPage, setCurrentPage] = useState<number>(0);
+
+    useEffect(() => {
+        if (!character) return;
+        setInputLines(lines => {
+            if (lines.length === 0) {
+                lines[0] = character.content;
+                return lines;
+            }
+            const lastIndex = lines.length - 1;
+            const currentLine = lines[lastIndex];
+            if (currentLine.length < articleLines.current[lastIndex].length) {
+                lines[lastIndex] = currentLine.concat(character.content);
+                if ((lines[lastIndex].length === articleLines.current[lastIndex].length)) {
+                    lines[lastIndex + 1] = "";
+                    if ((lastIndex + 1) % PER_PAGE === 0) {
+                        //go to next page
+                        setCurrentPage(previous => previous + 1);
+                    }
+                }
+                return lines;
+            } else {
+                //new
+                lines[lastIndex + 1] = character.content;
+                return lines;
+            }
+        });
+    }, [character]);
+
+    useEffect(() => {
+        if(inputLines.length > articleLines.current.length && inputLines[inputLines.length - 2].length === articleLines.current[articleLines.current.length - 1].length) {
+            navigate("/");
+        }
+    }, [inputLines, inputLines.length, articleLines, navigate])
+
+    useEffect(() => {
+        //backspace
+        if (currentKey === "backspace" && emptyKeyList) {
+            setInputLines(lines => {
+                if (lines.length === 0 || lines[0] === "") return lines; //empty
+                let lastIndex = lines.length - 1;
+                const currentLine = lines[lastIndex];
+                if (currentLine.length === 0) {
+                    //no character of currentLine
+                    if ((lastIndex) % PER_PAGE === 0) {
+                        //go to previous page
+                        setCurrentPage(previous => previous - 1);
+                    }
+                    lines = lines.slice(0, -1);
+                    lastIndex--;
+                    lines[lastIndex] = lines[lastIndex].slice(0, -1);
+                    return lines;
+                }
+                lines[lastIndex] = lines[lastIndex].slice(0, -1);
+                return lines;
+            })
+        }
+    }, [currentKey, emptyKeyList])
+
+    //view
+    let rows = [];
+    for (let i = (currentPage * PER_PAGE); i < ((currentPage + 1) * PER_PAGE); i++) {
+        rows.push(
+            <Box key={i}>
+                <Typography>{articleLines.current[i]}</Typography>
+                <Typography>{inputLines[i]}</Typography>
+            </Box>
+        )
+    }
+
+    return (
+        <Container
+            sx={{
+                paddingTop: "16px",
+                display: "grid",
+                gap: "8px",
+                gridTemplateRows: "16% 16% 16% 16% 16%",
+                justifyContent: "center"
+            }}
+        >
+            {rows}
+        </Container>
+    )
+}
+const Articale: React.FunctionComponent = () => {
+    return (
+        <BaseContainer title="文章練習" subtitle="" backOnClick="/" typing>
+            <ArticaleContent></ArticaleContent>
+        </BaseContainer>
+    )
+}
+
+export default Articale;

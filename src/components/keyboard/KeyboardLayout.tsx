@@ -18,14 +18,14 @@ const secondRowKeys = keyTranslate(["/", "a", "s", "d", "f", "g", "h", "j", "k",
 const thirdRowKeys = keyTranslate(["*", "z", "x", "c", "v", "b", "n", "m", "*", "backspace"]);
 const spaceRowKeys = keyTranslate(["*", "*", "space", "*", "*"]);
 
-type KeyLineGridProps = { keys: Array<{ en: string, zh: string }>, changeKey: (item: string) => void, currentKey?: string }
+type KeyLineGridProps = { keys: Array<{ en: string, zh: string }>, changeKey: (item: string) => void, handleKeyOnUp: () => void, currentKey?: string }
 const KeyLineGrid: React.FunctionComponent<KeyLineGridProps> = (props: KeyLineGridProps) => {
     return (
         <Grid item xs={12} sx={{ display: "flex", jutifiyContent: "center", gap: "4px", padding: "2px 0 2px 0" }}>
             {
                 props.keys.map((item: { en: string, zh: string }, index: number) => {
                     return (
-                        <KeyButton light={props.currentKey === item.en} key={index} item={item} onClick={props.changeKey}></KeyButton>
+                        <KeyButton light={props.currentKey === item.en} key={index} item={item} onClick={props.changeKey} handleKeyOnUp={props.handleKeyOnUp}></KeyButton>
                     )
                 })
             }
@@ -36,15 +36,16 @@ const KeyLineGrid: React.FunctionComponent<KeyLineGridProps> = (props: KeyLineGr
 type KeyboardLayoutProps = {
     currentKey?: string;
     changeKey: (item: string) => void;
+    handleKeyOnUp: () => void;
 }
 const KeyboardLayout: React.FunctionComponent<KeyboardLayoutProps> = (props: KeyboardLayoutProps) => {
     return (
         <>
             <Grid container sx={{ padding: "4px" }}>
-                <KeyLineGrid keys={firstRowKeys} changeKey={props.changeKey} currentKey={props.currentKey}></KeyLineGrid>
-                <KeyLineGrid keys={secondRowKeys} changeKey={props.changeKey} currentKey={props.currentKey}></KeyLineGrid>
-                <KeyLineGrid keys={thirdRowKeys} changeKey={props.changeKey} currentKey={props.currentKey}></KeyLineGrid>
-                <KeyLineGrid keys={spaceRowKeys} changeKey={props.changeKey} currentKey={props.currentKey}></KeyLineGrid>
+                <KeyLineGrid keys={firstRowKeys} changeKey={props.changeKey} handleKeyOnUp={props.handleKeyOnUp} currentKey={props.currentKey}></KeyLineGrid>
+                <KeyLineGrid keys={secondRowKeys} changeKey={props.changeKey} handleKeyOnUp={props.handleKeyOnUp} currentKey={props.currentKey}></KeyLineGrid>
+                <KeyLineGrid keys={thirdRowKeys} changeKey={props.changeKey} handleKeyOnUp={props.handleKeyOnUp} currentKey={props.currentKey}></KeyLineGrid>
+                <KeyLineGrid keys={spaceRowKeys} changeKey={props.changeKey} handleKeyOnUp={props.handleKeyOnUp} currentKey={props.currentKey}></KeyLineGrid>
             </Grid>
         </>
     )

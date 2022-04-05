@@ -23,6 +23,7 @@ const keyTranslate = (keyMap: Array<string>): Array<{ en: string, zh: string }> 
 
 type BaseContainerProps = {
     children: React.ReactNode;
+    leftMenu?: React.ReactNode;
     title: string;
     subtitle: string;
     backOnClick?: string | Function;
@@ -109,7 +110,9 @@ const BaseContainer: React.FunctionComponent<BaseContainerProps> = React.memo((p
     return (
         <>
             <Container maxWidth="md" disableGutters sx={{ height: "100vh", maxHeight: "-webkit-fill-available", position: "relative", display: "flex", flexDirection: "column" }}>
-                <MenuBar title={props.title} subtitle={props.subtitle} backOnClick={props.backOnClick} />
+                <MenuBar title={props.title} subtitle={props.subtitle} backOnClick={props.backOnClick}>
+                    {props.leftMenu}
+                </MenuBar>
                 <Container sx={{ display: "flex", height: "80vh" }}>{addPropsToChildren(props.children, { currentKey, character: character, emptyKeyList: emptyKeyList.current })}</Container>
                 {props.typing && (
                     <Box mb={1} sx={{ display: "flex", width: "100%" }}>

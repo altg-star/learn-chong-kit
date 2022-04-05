@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home, Tutorial, PressKeyMenu, DecodeMenu } from "./views";
 import { BasicKeyPractice, RootPressKey } from "./views/press-key";
 import { AssociateCode, CommonHead, CommonTail, SingleCharacter, Word } from "./views/decode";
-import { Article } from "./views/article";
+import { Article, Speed } from "./views/article";
 
 //style
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -34,6 +34,7 @@ const App = (): React.ReactElement => {
 					<Route path="/decode/single-character" element={<SingleCharacter />} />
 					<Route path="/decode/word" element={<Word />} />
 					<Route path="/article" element={<Article />} />
+					<Route path="/speed" element={<Speed />} />
 				</Routes>
 			</BrowserRouter>
 		</ThemeProvider>

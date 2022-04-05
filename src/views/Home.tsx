@@ -15,7 +15,7 @@ const linkList = [
     { "title": "按鍵練習", "href": "/press-key", "icon": KeyboardOutlinedIcon },
     { "title": "折碼練習", "href": "/decode", "icon": TranslateOutlinedIcon },
     { "title": "文章練習", "href": "/article", "icon": ArticleOutlinedIcon },
-    { "title": "速度測試", "href": "/article", "icon": SpeedOutlinedIcon },
+    { "title": "速度測試", "href": "/speed", "icon": SpeedOutlinedIcon },
     { "title": "設定", "href": "/setting", "icon": SettingsOutlinedIcon },
 ]
 

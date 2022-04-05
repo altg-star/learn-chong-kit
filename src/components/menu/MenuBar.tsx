@@ -2,12 +2,13 @@ import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 // ui
-import { AppBar, Toolbar, IconButton, Typography } from "@mui/material";
+import { Box, AppBar, Toolbar, IconButton, Typography } from "@mui/material";
 
 // icon
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 type MenuBarProps = {
+    children?: React.ReactNode;
     title?: string;
     subtitle?: string;
     backOnClick?: string | Function;
@@ -40,7 +41,9 @@ const MenuBar: React.FunctionComponent<MenuBarProps> = React.memo((props: MenuBa
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     {props.title}
                 </Typography>
-
+                <Box sx={{ paddingRight: 3 }}>
+                    {props.children}
+                </Box>
             </Toolbar>
             {
                 props.subtitle && (<Typography variant="subtitle2" component="div" sx={{ flexGrow: 1, ml: 3 }}>
